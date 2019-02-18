@@ -20,7 +20,7 @@
           line-height:25px;"
           @click="shou=!shou"
         >| | |</div>
-    <el-menu
+        <el-menu
           default-active="2"
           background-color=" #373d41"
           text-color="#fff"
@@ -30,6 +30,7 @@
           :collapse="shou"
           :collapse-transition="false"
           :unique-opened="true"
+          :router="true"
         >
           <el-submenu :index="item.id+''" v-for="(item,k) in List" :key="item.id">
             <template slot="title">
@@ -37,7 +38,7 @@
               <span>{{item.authName}}</span>
             </template>
             <el-menu-item-group v-for="item1 in item.children" :key="item1.id">
-              <el-menu-item :index="item.id + '-'+item1.id">
+              <el-menu-item :index="item1.path">
                 <i class="el-icon-menu"></i>
                 <span>{{item1.authName}}</span>
               </el-menu-item>
@@ -91,17 +92,16 @@ export default {
 .el-container {
   height: 100%;
   .el-header {
-    width: 100%;
+    background-color: rgb(55, 61, 65);
     padding: 0;
-    height: 60px;
-    background-color: #373d41;
-    overflow: hidden;
+    padding-right: 20px;
+    // 弹性布局
     display: flex;
-    align-content: center;
+    align-items: center;
     justify-content: space-between;
-    #logo {
-      color: #fff;
+    #logo-box {
       font-size: 22px;
+      color: #fff;
       display: flex;
       align-items: center;
       user-select: none;
@@ -111,20 +111,16 @@ export default {
         margin-right: 10px;
       }
     }
-    .el-button {
-      margin: 10px 20px;
+  }
+  .el-aside {
+    background-color: #333744;
+    .el-menu{
+      background-color:#333744;
+      width: 200px;
     }
   }
-  .el-container {
-    height: 100%;
-    .el-aside {
-      height: 100%;
-      background-color: #373d41;
-      user-select: none;
-      .el-menu{
-          width: 200px;
-      }
-    }
+  .el-main {
+    background-color: #eaedf1;
   }
 }
 </style>
